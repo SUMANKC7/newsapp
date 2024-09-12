@@ -1,19 +1,28 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import 'package:share/share.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class Detailscreen extends StatefulWidget {
-  final String blogUrl;
 
-  Detailscreen({
-    required this.blogUrl,
+class Detailscreen extends StatelessWidget {
+  final String imageUrl;
+  final String title;
+  final String description;
+  final String content;
+  final String source;
+  final String timeAgo;
+
+  const Detailscreen({
+    super.key,
+    required this.imageUrl,
+    required this.title,
+    required this.description,
+    required this.content,
+    required this.source,
+    required this.timeAgo,
   });
 
-  @override
-  State<Detailscreen> createState() => _DetailscreenState();
-}
-
-class _DetailscreenState extends State<Detailscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,33 +30,19 @@ class _DetailscreenState extends State<Detailscreen> {
         backgroundColor: Colors.white,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: () => Navigator.of(context).pop(),
         ),
-        actions: [
+        actions: <Widget>[
           IconButton(
             icon: Icon(Icons.share, color: Colors.black),
             onPressed: () {
-              Share.share('Check out this blog: ${widget.blogUrl}');
+              Share.share(content);
             },
           ),
           PopupMenuButton<String>(
             icon: Icon(Icons.more_vert, color: Colors.black),
             onSelected: (String result) {
-              switch (result) {
-                case 'Refresh':
-                  // Reload the WebView
-                  setState(() {});
-                  break;
-                case 'Open in Browser':
-                  // Implement the action to open in a browser
-                  // You may use a package like url_launcher
-                  break;
-                case 'Settings':
-                  // Implement settings action
-                  break;
-              }
+              // Add action handling logic here
             },
             itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
               const PopupMenuItem<String>(
@@ -66,13 +61,78 @@ class _DetailscreenState extends State<Detailscreen> {
           ),
         ],
       ),
-      body: Container(
-        child: WebView(
-          initialUrl: widget.blogUrl,
-          javascriptMode: JavascriptMode.unrestricted,
+      body: SingleChildScrollView(
+        child: Column(
+          
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Icon(Icons.newspaper_rounded,size: 40,),
+                  SizedBox(width: 9,),
+                  Text(
+                    source.toUpperCase(), // News source
+                    style: GoogleFonts.roboto(
+                      textStyle: TextStyle(
+                      fontSize: 18,
+                      color: Colors.grey[700],
+                      fontWeight: FontWeight.w900,
+                    
+                    ),
+                    )
+                  ),
+                 
+                ],
+              ),
+              
+            ),
+             Padding(
+              padding: EdgeInsets.only(left: 69,bottom: 20),
+               child: Text(
+                      timeAgo, // Time ago
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: const Color.fromARGB(255, 101, 100, 100),
+                        fontWeight: FontWeight.w900
+                      ),
+                    ),
+             ),
+            Image.network(
+              imageUrl,
+              width: double.infinity,
+              height: 250,
+              fit: BoxFit.cover,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                title,
+                style: GoogleFonts.roboto(
+                      textStyle: TextStyle(
+                      fontSize: 20,
+                      color: Colors.grey[700],
+                      fontWeight: FontWeight.w900,
+                    
+                    ),
+                    )
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                content,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
-
