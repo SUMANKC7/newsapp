@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:newsapp/models/article_model.dart';
 import 'package:newsapp/services/news.dart';
 
-class AllNews extends StatefulWidget {
+class LatestNews extends StatefulWidget {
   final String news;
-  AllNews({required this.news});
+  const LatestNews({super.key, required this.news});
 
   @override
-  State<AllNews> createState() => _AllNewsState();
+  State<LatestNews> createState() => _LatestNewsState();
 }
 
-class _AllNewsState extends State<AllNews> {
+class _LatestNewsState extends State<LatestNews> {
   List<ArticleModel> articles = [];
   bool isLoading = true;
 

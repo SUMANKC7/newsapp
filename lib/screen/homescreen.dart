@@ -6,6 +6,7 @@ import 'package:newsapp/filters/category_news.dart';
 import 'package:newsapp/models/article_model.dart';
 import 'package:newsapp/models/category_model.dart';
 import 'package:newsapp/screen/detailscreen.dart';
+import 'package:newsapp/screen/latestnews.dart';
 import 'package:newsapp/services/data.dart';
 import 'package:newsapp/services/news.dart';
 import 'package:newsapp/theme/colors.dart';
@@ -33,12 +34,12 @@ class _HomescreenState extends State<Homescreen> {
   getNews() async {
     News newsClass = News();
     await newsClass.getNews();
-   if (mounted) { 
-    setState(() {
-      articles = newsClass.news;
-      _loading = false;
-    });
-  }
+    if (mounted) {
+      setState(() {
+        articles = newsClass.news;
+        _loading = false;
+      });
+    }
   }
 
   @override
@@ -52,17 +53,6 @@ class _HomescreenState extends State<Homescreen> {
               "assests/images/kabar.png",
               width: 99,
               height: 30,
-            ),
-            Material(
-              elevation: 2,
-              shape:RoundedRectangleBorder(borderRadius: BorderRadiusDirectional.circular(10)),
-              child: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.notifications_outlined,
-                  size: 32,
-                ),
-              ),
             ),
           ],
         ),
@@ -79,12 +69,20 @@ class _HomescreenState extends State<Homescreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "Latest",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
-                              
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          LatestNews(news: "Latest News")));
+                            },
+                            child: Text(
+                              "Latest",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16,
+                              ),
                             ),
                           ),
                           GestureDetector(
@@ -126,13 +124,19 @@ class _HomescreenState extends State<Homescreen> {
                           itemCount: articles.length,
                           itemBuilder: (context, index) {
                             return BlogTile(
-                              description: articles[index].description ?? 'No description available',
-  imageUrl: articles[index].urlToImage ?? 'assests/images/default.jpg',
-  title: articles[index].title ?? 'No title available',
-  author: articles[index].author ?? 'Author',
-  publishedAt: articles[index].publishedAt ?? DateTime.now().toIso8601String(),
-  url: articles[index].url ?? '',
-  sourceName: articles[index].sourceName ?? 'Unknown source',
+                              description: articles[index].description ??
+                                  'No description available',
+                              imageUrl: articles[index].urlToImage ??
+                                  'assests/images/default.jpg',
+                              title:
+                                  articles[index].title ?? 'No title available',
+                              author: articles[index].author ?? 'Author',
+                              publishedAt: articles[index].publishedAt ??
+                                  DateTime.now().toIso8601String(),
+                              url: articles[index].url ?? '',
+                              sourceName: articles[index].sourceName ??
+                                  'Unknown source',
+                              content: articles[index].content ?? "No",
                             );
                           }),
                     )
@@ -181,9 +185,16 @@ class CategoryTile extends StatelessWidget {
 }
 
 class BlogTile extends StatelessWidget {
-  final String imageUrl, title, description, author, publishedAt, url, sourceName;
+  final String imageUrl,
+      title,
+      description,
+      content,
+      author,
+      publishedAt,
+      url,
+      sourceName;
 
-  BlogTile({
+  const BlogTile({
     super.key,
     required this.description,
     required this.imageUrl,
@@ -192,6 +203,7 @@ class BlogTile extends StatelessWidget {
     required this.publishedAt,
     required this.url,
     required this.sourceName,
+    required this.content,
   });
 
   @override
@@ -204,13 +216,30 @@ class BlogTile extends StatelessWidget {
 
     // Calculate the time ago string
     String timeAgo = timeago.format(publishedDate, allowFromNow: true);
+    String text = sourceName;
+    int limit = 10;
+    String limitText(text, limit) {
+      if (text.length > limit) {
+        return text.substring(0, limit) +
+            '...'; // Add ellipsis to indicate continuation
+      } else {
+        return text;
+      }
+    }
 
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Detailscreen(blogUrl: url),
+            builder: (context) => Detailscreen(
+              imageUrl: imageUrl,
+              title: title,
+              content: content,
+              source: sourceName,
+              timeAgo: timeAgo,
+              description: description,
+            ),
           ),
         );
       },
@@ -272,13 +301,13 @@ class BlogTile extends StatelessWidget {
                       Row(
                         children: [
                           Image.asset(
-                            "assests/images/bbc.png",
+                            "assests/images/logo.jpg",
                             height: 20,
                             width: 20,
                           ),
                           SizedBox(width: 5),
                           Text(
-                            sourceName,
+                            limitText(sourceName, 12),
                             style: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
@@ -299,6 +328,8 @@ class BlogTile extends StatelessWidget {
                               letterSpacing: 0.12,
                               fontWeight: FontWeight.w400,
                             ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
                           ),
                         ],
                       ),
@@ -313,5 +344,3 @@ class BlogTile extends StatelessWidget {
     );
   }
 }
-
-
