@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:newsapp/screen/splashscreen.dart';
+import 'package:newsapp/screen/homescreen.dart';
+
 
 
 void main() {
@@ -14,7 +15,7 @@ class NewsApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+      home: Homescreen()
     );
   }
 }
