@@ -47,12 +47,12 @@ class _HomescreenState extends State<Homescreen> {
     return Scaffold(
       appBar: AppBar(
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Image.asset(
-              "assests/images/kabar.png",
-              width: 99,
-              height: 30,
+              "assests/images/file2.png",
+              width: 120,
+              height: 140,
             ),
           ],
         ),
