@@ -1,16 +1,40 @@
-# newsapp
+# 📰 News App
 
-A new Flutter project.
+A dynamic Flutter news aggregator application that displays real-time updates from multiple sources using **REST APIs**.  
+The app features categorized news, detailed article views, bookmarking, and sharing functionality.  
 
-## Getting Started
+## 🚀 Features
+- **Real-time News** fetched from REST APIs  
+- **Category-based News** (Business, Sports, etc.)  
+- **Detailed News Page** with full content  
+- **Sharing Support** to quickly share articles  
+- **Bookmarking** for offline reading  
+- **Infinite Scroll** for seamless browsing  
+- **Clean Architecture** with responsive UI  
 
-This project is a starting point for a Flutter application.
+## 📸 Screenshots
 
-A few resources to get you started if this is your first Flutter project:
+| Home | Business News | Sports |
+|------|---------------|--------|
+| ![Home](assests/screenshots/home.png) | ![Business](assests/screenshots/business_news.png) | ![Sports](assests/screenshots/sports.png) |
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+| Detail Page | Share |
+|-------------|-------|
+| ![Detail Page](assests/screenshots/detail_page.png) | ![Share](assests/screenshots/share.png) |
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📱 App Flow
+1. **Home Screen** → View latest news headlines.  
+2. **Categories** → Explore news by topic (Business, Sports, etc.).  
+3. **Detail Page** → Read the full article with details.  
+4. **Share** → Instantly share articles with others.  
+5. **Bookmark (optional)** → Save articles for offline access.  
+
+## 🛠️ Tech Stack
+- **Framework**: Flutter (Dart)  
+- **State Management**: Provider  
+- **Networking**: REST APIs  
+- **UI**: Material Design, Responsive Layout  
+
+---
+
+📌 This project demonstrates my ability to consume REST APIs, implement state management, and build a **real-world news application** with modern Flutter practices.
