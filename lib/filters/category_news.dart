@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:newsapp/models/show_category.dart';
 import 'package:newsapp/services/show_category.dart';
 
-
 class CategoryNews extends StatefulWidget {
   String name;
   CategoryNews({super.key, required this.name});
@@ -44,15 +43,16 @@ class _CategoryNewsState extends State<CategoryNews> {
         elevation: 0.0,
       ),
       body: Container(
-        margin:const EdgeInsets.symmetric(horizontal: 10.0),
+        margin: const EdgeInsets.symmetric(horizontal: 10.0),
         child: ListView.builder(
             shrinkWrap: true,
             physics: const ClampingScrollPhysics(),
             itemCount: categories.length,
             itemBuilder: (context, index) {
               return ShowCategory(
-                urlToImage: categories[index].urlToImage!,description: categories[index].description!,title: categories[index].title!,
-                
+                urlToImage: categories[index].urlToImage!,
+                description: categories[index].description!,
+                title: categories[index].title!,
               );
             }),
       ),
@@ -63,10 +63,10 @@ class _CategoryNewsState extends State<CategoryNews> {
 class ShowCategory extends StatelessWidget {
   String urlToImage, description, title;
   ShowCategory({
+    super.key,
     required this.urlToImage,
     required this.description,
     required this.title,
-   
   });
 
   @override
@@ -83,12 +83,24 @@ class ShowCategory extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-         const SizedBox(height: 10,),
-          Text(title,
-          maxLines: 2,
-          style: TextStyle(color: Colors.black,fontSize: 18.0,fontWeight: FontWeight.bold),),
-          Text(description,maxLines: 4,),
-          const SizedBox(height: 30.0,),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            title,
+            maxLines: 2,
+            style: const TextStyle(
+                color: Colors.black,
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold),
+          ),
+          Text(
+            description,
+            maxLines: 4,
+          ),
+          const SizedBox(
+            height: 30.0,
+          ),
         ],
       ),
     );

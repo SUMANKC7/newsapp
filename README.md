@@ -12,15 +12,15 @@ The app features categorized news, detailed article views, bookmarking, and shar
 - **Infinite Scroll** for seamless browsing  
 - **Clean Architecture** with responsive UI  
 
-## 📸 Screenshots
+## 📸 Screenshots (Mobile vs Web)
 
-| Home | Business News | Sports |
-|------|---------------|--------|
-| ![Home](assests/screenshots/home.png) | ![Business](assests/screenshots/business_news.png) | ![Sports](assests/screenshots/sports.png) |
-
-| Detail Page | Share |
-|-------------|-------|
-| ![Detail Page](assests/screenshots/detail_page.png) | ![Share](assests/screenshots/share.png) |
+| Mobile View | Web View |
+|-------------|----------|
+| ![Home Mobile](assests/screenshots/home.png) | ![Home Web](assests/screenshots/newshomeweb.png) |
+| ![Business News Mobile](assests/screenshots/business_news.png) | ![Business News Web](assests/screenshots/businessweb.png) |
+| ![Sports Mobile](assests/screenshots/sports.png) | ![Sports Web](assests/screenshots/sportsweb.png) |
+| ![Detail Page Mobile](assests/screenshots/detail_page.png) | ![Detail Page Web](assests/screenshots/newsweb.png) |
+| ![Share Mobile](assests/screenshots/share.png) |
 
 ## 📱 App Flow
 1. **Home Screen** → View latest news headlines.  

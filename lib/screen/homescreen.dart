@@ -64,7 +64,7 @@ class _HomescreenState extends State<Homescreen> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                           left: 18, right: 18, top: 15, bottom: 15),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,10 +74,10 @@ class _HomescreenState extends State<Homescreen> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          LatestNews(news: "Latest News")));
+                                      builder: (context) => const LatestNews(
+                                          news: "Latest News")));
                             },
-                            child: Text(
+                            child: const Text(
                               "Latest",
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
@@ -93,7 +93,7 @@ class _HomescreenState extends State<Homescreen> {
                                       builder: (context) =>
                                           AllNews(news: "See all")));
                             },
-                            child: Text(
+                            child: const Text(
                               "See all",
                               style: TextStyle(
                                   fontWeight: FontWeight.w400,
@@ -106,7 +106,7 @@ class _HomescreenState extends State<Homescreen> {
                     ),
                     Container(
                       height: 70,
-                      margin: EdgeInsets.only(left: 8),
+                      margin: const EdgeInsets.only(left: 8),
                       child: ListView.builder(
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
@@ -162,14 +162,14 @@ class CategoryTile extends StatelessWidget {
                 builder: (context) => CategoryNews(name: categoryName)));
       },
       child: Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Container(
           child: Stack(
             children: [
               Container(
                 child: Text(
                   categoryName,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: ColorsPallate.catagoryColor,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
@@ -262,7 +262,7 @@ class BlogTile extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
 
                 // Text Section
                 Expanded(
@@ -272,7 +272,7 @@ class BlogTile extends StatelessWidget {
                       // Author name
                       Text(
                         author,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: ColorsPallate.catagoryColor,
                           fontSize: 13,
                           letterSpacing: 0.12,
@@ -281,12 +281,12 @@ class BlogTile extends StatelessWidget {
                         overflow: TextOverflow.ellipsis, // Limit overflow
                         maxLines: 1, // Only show 1 line for author
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
 
                       // Title
                       Text(
                         title,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
                           letterSpacing: 0.12,
@@ -295,7 +295,7 @@ class BlogTile extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         maxLines: 3, // Limit to 3 lines
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
 
                       // Source name, time ago, and icon
                       Row(
@@ -305,24 +305,24 @@ class BlogTile extends StatelessWidget {
                             height: 20,
                             width: 20,
                           ),
-                          SizedBox(width: 5),
+                          const SizedBox(width: 5),
                           Text(
                             limitText(sourceName, 12),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
                               letterSpacing: 0.12,
                             ),
                           ),
-                          SizedBox(width: 5),
-                          Icon(
+                          const SizedBox(width: 5),
+                          const Icon(
                             CupertinoIcons.clock,
                             size: 14,
                           ),
-                          SizedBox(width: 3),
+                          const SizedBox(width: 3),
                           Text(
                             timeAgo,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: ColorsPallate.catagoryColor,
                               fontSize: 13,
                               letterSpacing: 0.12,

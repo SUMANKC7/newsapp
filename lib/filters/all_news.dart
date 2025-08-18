@@ -5,7 +5,7 @@ import 'package:newsapp/services/news.dart';
 
 class AllNews extends StatefulWidget {
   final String news;
-  AllNews({required this.news});
+  const AllNews({super.key, required this.news});
 
   @override
   State<AllNews> createState() => _AllNewsState();
@@ -36,25 +36,33 @@ class _AllNewsState extends State<AllNews> {
       appBar: AppBar(
         title: Text(
           widget.news,
-          style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 20),
+          style: const TextStyle(
+              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
         ),
         centerTitle: true,
         elevation: 0.0,
       ),
       body: isLoading
-          ? Center(child: CircularProgressIndicator()) // Show loading indicator while fetching
+          ? const Center(
+              child:
+                  CircularProgressIndicator()) // Show loading indicator while fetching
           : articles.isEmpty
-              ? Center(child: Text('No news articles available.')) // Show message when no articles
+              ? const Center(
+                  child: Text(
+                      'No news articles available.')) // Show message when no articles
               : Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10.0),
+                  margin: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: ListView.builder(
                     itemCount: articles.length,
                     itemBuilder: (context, index) {
                       final article = articles[index];
                       return AllNewsSelection(
-                        urlToImage: article.urlToImage ?? '', // Provide default empty string if null
-                        description: article.description ?? '', // Provide default empty string if null
-                        title: article.title ?? '', // Provide default empty string if null
+                        urlToImage: article.urlToImage ??
+                            '', // Provide default empty string if null
+                        description: article.description ??
+                            '', // Provide default empty string if null
+                        title: article.title ??
+                            '', // Provide default empty string if null
                       );
                     },
                   ),
@@ -68,7 +76,8 @@ class AllNewsSelection extends StatelessWidget {
   final String description;
   final String title;
 
-  AllNewsSelection({
+  const AllNewsSelection({
+    super.key,
     required this.urlToImage,
     required this.description,
     required this.title,
@@ -77,7 +86,8 @@ class AllNewsSelection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10.0), // Add vertical margin for better spacing
+      margin: const EdgeInsets.symmetric(
+          vertical: 10.0), // Add vertical margin for better spacing
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start, // Align content to start
         children: [
@@ -88,8 +98,11 @@ class AllNewsSelection extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: 200,
               fit: BoxFit.cover,
-              placeholder: (context, url) => Center(child: CircularProgressIndicator()), // Show placeholder while loading
-              errorWidget: (context, url, error) => Icon(Icons.error), // Show error icon if image fails to load
+              placeholder: (context, url) => const Center(
+                  child:
+                      CircularProgressIndicator()), // Show placeholder while loading
+              errorWidget: (context, url, error) => const Icon(
+                  Icons.error), // Show error icon if image fails to load
             ),
           ),
           const SizedBox(height: 10),
@@ -97,7 +110,10 @@ class AllNewsSelection extends StatelessWidget {
             title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis, // Handle long text with ellipsis
-            style: TextStyle(color: Colors.black, fontSize: 18.0, fontWeight: FontWeight.bold),
+            style: const TextStyle(
+                color: Colors.black,
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 5),
           Text(

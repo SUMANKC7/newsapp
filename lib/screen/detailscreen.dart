@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class Detailscreen extends StatelessWidget {
   final String imageUrl;
   final String title;
@@ -29,18 +28,18 @@ class Detailscreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.of(context).pop(),
         ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.share, color: Colors.black),
+            icon: const Icon(Icons.share, color: Colors.black),
             onPressed: () {
               Share.share(content);
             },
           ),
           PopupMenuButton<String>(
-            icon: Icon(Icons.more_vert, color: Colors.black),
+            icon: const Icon(Icons.more_vert, color: Colors.black),
             onSelected: (String result) {
               // Add action handling logic here
             },
@@ -63,43 +62,43 @@ class Detailscreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
-          
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, ),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Icon(Icons.newspaper_rounded,size: 40,),
-                  SizedBox(width: 9,),
-                  Text(
-                    source.toUpperCase(), // News source
-                    style: GoogleFonts.roboto(
-                      textStyle: TextStyle(
-                      fontSize: 18,
-                      color: Colors.grey[700],
-                      fontWeight: FontWeight.w900,
-                    
-                    ),
-                    )
+                  const Icon(
+                    Icons.newspaper_rounded,
+                    size: 40,
                   ),
-                 
+                  const SizedBox(
+                    width: 9,
+                  ),
+                  Text(source.toUpperCase(), // News source
+                      style: GoogleFonts.roboto(
+                        textStyle: TextStyle(
+                          fontSize: 18,
+                          color: Colors.grey[700],
+                          fontWeight: FontWeight.w900,
+                        ),
+                      )),
                 ],
               ),
-              
             ),
-             Padding(
-              padding: EdgeInsets.only(left: 69,bottom: 20),
-               child: Text(
-                      timeAgo, // Time ago
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: const Color.fromARGB(255, 101, 100, 100),
-                        fontWeight: FontWeight.w900
-                      ),
-                    ),
-             ),
+            Padding(
+              padding: const EdgeInsets.only(left: 69, bottom: 20),
+              child: Text(
+                timeAgo, // Time ago
+                style: const TextStyle(
+                    fontSize: 14,
+                    color: Color.fromARGB(255, 101, 100, 100),
+                    fontWeight: FontWeight.w900),
+              ),
+            ),
             Image.network(
               imageUrl,
               width: double.infinity,
@@ -108,26 +107,21 @@ class Detailscreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Text(
-                title,
-                style: GoogleFonts.roboto(
-                      textStyle: TextStyle(
+              child: Text(title,
+                  style: GoogleFonts.roboto(
+                    textStyle: TextStyle(
                       fontSize: 20,
                       color: Colors.grey[700],
                       fontWeight: FontWeight.w900,
-                    
                     ),
-                    )
-              ),
+                  )),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 content,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500
-                ),
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
             ),
           ],
